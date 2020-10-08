@@ -19,6 +19,11 @@ export default {
         name: "Joe",
         role: "Prof",
         nickname: "Teddy Bear"
+    },
+    Jarrod: {
+        name: "Jarrod",
+        role: "male model Prof",
+        nickname: "Zoolander"
     }
 
 }

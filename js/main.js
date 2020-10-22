@@ -3,12 +3,24 @@ import Team from "./modules/DataModule.js";
 
 
 (() => {
-    // stub * just a place for non-component-specific stuff
+    //start with a fetch call
+    fetch('./DataSet.json')
+        .then(res => res.json()) //parse the json (translate the json into javascript)
+        .then(data => {
+            //this is out data(dataset.json)
+            //converted to plain javascript object
+            handleDataSet(data);
+        })
+
+    .catch((error) => console.log(error));
+
+
+
     let userSection = document.querySelector(".user-section"),
         userTemplate = document.querySelector("#profs-template").content;
 
 
-    debugger;
+
 
     //select our user elements and load the content
 
@@ -16,15 +28,17 @@ import Team from "./modules/DataModule.js";
 
 
         for (let user in data) {
+            debugger;
 
             //make a copy of our template here
             // the populate the children (text elements ) with
             // the static data from the team object
             let currentUser = userTemplate.cloneNode(true),
                 currentUserText = currentUser.querySelector('.user').children;
-            currentUserText[1].textContent = Team[user].name;
-            currentUserText[2].textContent = Team[user].role;
-            currentUserText[3].textContent = Team[user].nickname;
+            currentUserText[1].src = `images/${data[user].avatar}`;
+            currentUserText[2].textContent = data[user].name;
+            currentUserText[3].textContent = data[user].role;
+            currentUserText[4].textContent = data[user].nickname;
 
             userSection.appendChild(currentUser);
 
